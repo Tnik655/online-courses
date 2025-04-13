@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+#modules-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	justify-content: center;
+}
+
+.modules-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+	justify-content: center;
+	gap: 16px;
+}
+
+.module-edit{
+	width: 16px;
+	height: 16px;
+}
+.module {
+	box-shadow: #131313 0 0 2px;
+	padding: 16px;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 600px;
+}
+
+.btn{
+	display: flex;
+	justify-content: center;
+}
+
+.add-new-module {
+	margin-top: 16px;
+	text-align: center;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Teacher</title>
+<link rel="stylesheet" th:href="@{/css/teacher/module.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css">
+</head>
+<body>
+	<header class="header" th:insert="~{header :: header-fr}"></header>
+	<main class="main">
+		<div class="container">
+			<h1 class="main__title">Редактирование модуля</h1>
+			<form th:action="@{/edit-module/{id}(id=${module.id})}" method="post">
+				<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+				<input 
+					th:value="${module.title}" placeholder="Название"
+					class="input-text" type="text" name="title" /> 
+				<input
+					th:value="${module.description}" placeholder="Описание"
+					class="input-text" type="text" name="description" />
+				<input type="submit" class="blue-btn">
+			</form>
+		</div>
+
+	</main>
+</body>
+</html>

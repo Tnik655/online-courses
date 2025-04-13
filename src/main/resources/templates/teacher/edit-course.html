@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Teacher</title>
+<link rel="stylesheet" th:href="@{/css/teacher/edit-course.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css">
+</head>
+<body>
+	<header class="header" th:insert="~{header :: header-fr}"></header>
+	<main class="main">
+		<div class="container">
+			<h1 class="main__title">Редактирование курса</h1>
+			<section id="modules-section" class="modules-section">
+			<input type="hidden" id="courseId" th:value="${courseId}" />
+			<input type="hidden" id="csrfToken" th:value="${_csrf.token}" />
+			<form th:action="@{/teacher/{id}/save-passing-time(id=${courseId})}" method="post">
+				<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+				<input placeholder="Время прохождения курса" class="input-text" 
+				type="number" name="passingTime" th:value=${course.passingTime}>
+				<input class="blue-btn" type="submit" value="Сохранить">
+			</form>
+				<div class="modules" th:each="module: ${modules}">
+					<div class="module">
+						<h2 class="module-title" th:text="${module.title}"></h2>
+						<p class="module-description" th:text="${module.description}"></p>
+						<a th:href="@{/edit-module/{id}(id=${module.id})}"><img
+							class="module-edit" alt="edit" th:src="@{/img/edit.svg}"></a>
+					</div>
+				</div>
+			</section>
+			<div class="btn">
+				<button type="button" class="blue-btn add-new-module"
+					onclick="addModule()">Добавить модуль</button>
+			</div>
+		</div>
+	</main>
+	<script type="text/javascript" th:src="@{/js/edit-text.js}"></script>
+</body>
+</html>

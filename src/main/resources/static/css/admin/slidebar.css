@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.slide-bar {
+	position: fixed;
+	width: 240px;
+	height: 100%;
+	box-shadow: #131313 0 0 3px;
+	text-align: center;
+}
+
+.slide-bar-ul {
+	margin-top: 64px;
+}
+
+.ul-item a {
+	text-decoration: none;
+	background-color: #0083da;
+	color: white;
+	border: white solid 1px;
+	border-radius: 8px;
+	padding: 8px;
+}

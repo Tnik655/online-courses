@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro
+        http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet id="2025-03-25-create-link-tables-1" author="Bikbulatov Damir">
+        <createTable tableName="link_course_category">
+            <column name="course_id" type="bigserial">
+                <constraints references="course(id)" foreignKeyName="course_category_course_fk" 
+                deleteCascade="true"/>
+            </column>
+            <column name="category_id" type="bigserial">
+                <constraints references="category(id)" foreignKeyName="course_category_category_fk" 
+                deleteCascade="true"/>
+            </column>
+        </createTable>
+        
+        <addPrimaryKey columnNames="course_id, category_id" 
+        tableName="link_course_category" 
+        constraintName="course_category_pk"/>
+    </changeSet>
+    
+    <changeSet author="Bikbulatov Damir" id="2025-03-25-create-link-tables-2">
+        <createTable tableName="link_module_lesson">
+            <column name="module_id" type="bigserial">
+                <constraints references="module(id)" foreignKeyName="module_lesson_module_fk"
+                deleteCascade="true"/>
+            </column>
+            <column name="lesson_id" type="bigserial">
+                <constraints references="lesson(id)" foreignKeyName="module_lesson_lesson_fk"
+                deleteCascade="true"/>
+            </column>
+        </createTable>
+        
+        <addPrimaryKey columnNames="module_id, lesson_id" tableName="link_module_lesson"
+        constraintName="module_lesson_pk"/>
+    </changeSet>
+    
+    <changeSet author="Bikbulatov Damir" id="2025-03-25-create-link-tables-3">
+        <createTable tableName="link_course_tag">
+            <column name="course_id" type="bigserial">
+                <constraints references="course(id)" foreignKeyName="course_tag_course_fk"
+                deleteCascade="true" />
+            </column>
+            <column name="tag_id" type="bigserial">
+                <constraints references="tag(id)" foreignKeyName="course_tag_tag_fk"
+                deleteCascade="true" />
+            </column>
+        </createTable>
+        
+        <addPrimaryKey columnNames="course_id, tag_id" tableName="link_course_tag" 
+        constraintName="course_tag_pk"/>
+    </changeSet>
+    
+    <changeSet author="Bikbulatov Damir" id="2025-03-25-create-link-tables-4">
+        <createTable tableName="link_lesson_content">
+            <column name="lesson_id" type="bigserial">
+                <constraints references="lesson(id)" foreignKeyName="lesson_content_lesson_fk"
+                deleteCascade="true"/>
+            </column>
+            <column name="content_id" type="bigserial">
+                <constraints references="content(id)" foreignKeyName="lesson_content_content_fk"
+                deleteCascade="true"/>
+            </column>
+        </createTable>
+        
+        <addPrimaryKey columnNames="lesson_id, content_id" tableName="link_lesson_content"
+        constraintName="lesson_content_pk"/>
+    </changeSet>
+    
+</databaseChangeLog>

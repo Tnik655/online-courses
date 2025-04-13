@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro
+        http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-26-change-rating-schema-1">
+            <dropColumn tableName="course">
+                <column name="rating_id"></column>
+            </dropColumn>
+        </changeSet>
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-26-change-rating-schema-2">
+            <addColumn tableName="rating">
+                <column name="course_id" type="bigserial"></column>
+            </addColumn>
+        </changeSet>
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-26-change-rating-schema-3">
+            <addForeignKeyConstraint constraintName="rating_course_fk" referencedTableName="course" 
+            baseColumnNames="course_id" baseTableName="rating" referencedColumnNames="id"/>
+        </changeSet>
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-26-change-rating-schema-4">
+            <dropColumn tableName="rating">
+                <column name="id"></column>
+            </dropColumn>
+        </changeSet>
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-26-change-rating-schema-5">
+            <addPrimaryKey columnNames="course_id, user_id" tableName="rating" constraintName="rating_pk"/>
+        </changeSet>
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-26-change-rating-schema-6">
+            <dropUniqueConstraint tableName="rating" constraintName="rating_user_id_key"/>
+        </changeSet>
+        
+</databaseChangeLog>

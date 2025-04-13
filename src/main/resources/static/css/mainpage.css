@@ -1,0 +1,51 @@
+.main {
+    margin-top: 160px;
+}
+
+.main__title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 400;
+    font-family: inherit;
+}
+
+.main__catalog {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.catalog__card {
+    box-shadow: #131313 0px 0px 5px;
+    padding: 16px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.catalog__card a{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.catalog__card-title{
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.catalog__card-description{
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.catalog__card-time{
+    font-size: 12px;
+    opacity: .8;
+}

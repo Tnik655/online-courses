@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro
+        http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+        
+    <changeSet id="2025-03-22-create-link-tables-1" author="Bikbulatov Damir">
+        <createTable tableName="link_users_course">
+            <column name="user_id" type="bigserial">
+                <constraints references="users(id)" foreignKeyName="users_course_users_fk" 
+                deleteCascade="true"/>
+            </column>
+            <column name="course_id" type="bigserial">
+                <constraints references="course(id)" foreignKeyName="users_course_course_fk" 
+                deleteCascade="true"/>
+            </column>
+        </createTable>
+        
+        <addPrimaryKey columnNames="user_id, course_id" 
+        tableName="link_users_course" 
+        constraintName="users_course_pk"/>
+    </changeSet>
+        
+</databaseChangeLog>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Teacher</title>
+<link rel="stylesheet" th:href="@{/css/teacher/teacher.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css">
+</head>
+<body>
+	<header class="header" th:insert="~{header :: header-fr}"></header>
+	<main class="main">
+		<div class="container">
+			<h1 class="main__title">Мои курсы</h1>
+			<div class="top-panel">
+				<form action="/teacher/create" method="get">
+					<input class="blue-btn" type="submit" th:value="Создать">
+				</form>
+				
+				<form action="">
+					<input class="input-text" type="search" placeholder="Поиск по названию">
+				</form>
+			</div>
+			
+			<div class="courses">
+				<h2 class="no-courses-msg" th:if="${courses.isEmpty()}">У вас нет курсов!</h2>
+				<div class="course" th:unless="${courses.isEmpty()}" th:each="course: ${courses}">
+					<div class="course-text">
+						<h3 class="course-title" th:text="${course.title}"></h3>
+						<h4 class="course-date" th:text="${course.createdDate}"></h4>
+						<p class="course-is-deleted" th:if="${course.deletedBy != null}">Удален</p>
+					</div>
+					<div class="btns">
+						<form th:action="@{/teacher/{id}(id=${course.id})}" method="get">
+							<input class="blue-btn" type="submit" value="Редактировать">
+						</form>
+						<form th:if="${course.deletedBy == null}" th:action="@{/teacher/{id}/delete(id=${course.id})}" method="post">
+						<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+							<input class="red-btn" type="submit" value="Удалить">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

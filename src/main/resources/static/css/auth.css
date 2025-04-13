@@ -1,0 +1,68 @@
+.body {
+    --main-color: #131313;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.title {
+    margin-bottom: 48px;
+    font-size: 48px;
+}
+
+.inner {
+    padding: 24px;
+    box-shadow: 0 0 3px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input {
+    margin-bottom: 16px;
+    box-shadow: 0 0 2px;
+    border: none;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.btn {
+    background-color: #0083da;
+    color: white;
+    border: white solid 1px;
+    padding: 8px;
+    font-size: 14px;
+    transition: all .4s ease-in;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all .4s ease-in;
+    margin-bottom: 8px;
+}
+
+.reg_btn {
+    text-decoration: none;
+    background-color: #fff;
+    border: #131313 solid 1px;
+    color: #131313;
+    transition: all .4s ease-in;
+}
+
+.reg_btn:hover {
+    background-color: #0083da;
+    border: #fff solid 1px;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #0199ff;
+}

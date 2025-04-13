@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+main {
+	display: flex;
+}
+
+.main-section {
+	margin: 64px 40px 0 280px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	flex-direction: column;
+}
+
+.main-title{
+	margin-bottom: 32px;
+	font-size: 32px;
+	font-weight: 500;	
+}
+

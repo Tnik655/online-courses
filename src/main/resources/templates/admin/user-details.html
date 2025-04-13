@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Users</title>
+<link rel="stylesheet" th:href="@{/css/admin/admin.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/admin/slidebar.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/admin/user_details.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css">
+</head>
+<body>
+	<header class="header" th:insert="~{header :: header-fr}"></header>
+
+	<main>
+		<aside class="slide-bar" th:insert="~{admin/slidebar :: slide-bar-fr}"></aside>
+		<section class="main-section">
+			<h1 class="main-title">Данные пользователя</h1>
+			<form class="user-info" method="post" th:action="@{/admin/users/{id}(id=${user.id})}">
+				<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+				<div class="input-wrapper">
+					<label>Логин</label>
+					<input class="user-info-input" placeholder="Логин" type="text"
+						name="username" required="required" th:value="${user.username}" />
+				</div>
+				
+				<div class="input-wrapper">
+					<label >Имя</label>
+					<input class="user-info-input" placeholder="Имя" type="text"
+						name="firstName" required="required" th:value="${user.firstName}" />
+				</div>
+
+				
+					
+				<div class="input-wrapper">
+					<label >Фамилия</label>
+					<input class="user-info-input" placeholder="Фамилия" type="text"
+						name="lastName" required="required" th:value="${user.lastName}" />
+				</div>
+					
+				<div class="input-wrapper">
+					<label >Email</label>
+					<input class="user-info-input" placeholder="Email" type="email"
+						name="email" required="required" th:value="${user.email}" /> 
+				</div>
+				
+				<div class="input-wrapper">
+					<label >Пароль</label>
+					<input class="user-info-input" placeholder="Пароль" type="text"
+						name="password" required="required" th:value="${user.password}" /> 
+				</div>
+				
+				<div class="input-wrapper">
+					<label for="roles" >Роль</label>
+					<select id="roles" class="user-info-input" required="required" name="roleType" th:list="roles">
+						<option th:selected="${role.equals(user.role.type)}" 
+						th:each="role : ${roles}" th:value="${role}" 
+						th:text="${role.name}"/>
+					</select>
+				</div>
+				<input class="change-btn" type="submit" value="Изменить" />
+			</form>
+		</section>
+	</main>
+</body>
+</html>

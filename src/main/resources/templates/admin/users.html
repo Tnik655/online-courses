@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Users</title>
+<link rel="stylesheet" th:href="@{/css/admin/admin.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/admin/slidebar.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/admin/users.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css">
+</head>
+<body>
+	<header class="header" th:insert="~{header :: header-fr}"></header>
+
+	<main>
+		<aside class="slide-bar" th:insert="~{admin/slidebar :: slide-bar-fr}" ></aside>
+		<section class="main-section">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Пользователь</th>
+						<th>Имя</th>
+						<th>Фамилия</th>
+						<th>email</th>
+						<th>Дата регистрации</th>
+						<th>Роль</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr th:each="user: ${users}">
+						<th th:text="${user.username}"></th>
+						<th th:text="${user.firstName}"></th>
+						<th th:text="${user.lastName}"></th>
+						<th th:text="${user.email}"></th>
+						<th th:text="${user.registrationDate}"></th>
+						<th th:text="${user.role.type.name}"></th>
+						<th> <a class="btn-details" th:href="@{/admin/users/{id}(id=${user.id})}" type="submit">Подробнее</a></th>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</main>
+</body>
+</html>

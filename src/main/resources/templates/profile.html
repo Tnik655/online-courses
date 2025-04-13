@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Profile</title>
+<link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css">
+</head>
+<body>
+    <header class="header" th:insert="~{header :: header-fr}"></header>
+    <main class="main">
+        <div class="container">
+            <h2 class="main__title">Профиль</h2>
+            <div class="main__profile">
+                <form class="profile__form" method="post" action="/profile">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                    <input class="profile__form-input" placeholder="Имя" type="text" name="firstName" 
+                    required="required" th:value="${user.firstName}"/>
+                    
+                    <input class="profile__form-input" placeholder="Фамилия" type="text" name="lastName" 
+                    required="required" th:value="${user.lastName}"/>
+                    
+                    <input class="profile__form-input" placeholder="Email" type="text" name="email" 
+                    required="required" th:value="${user.email}"/>
+                    
+                    <input class="btn profile__form-submit" type="submit" value="Сохранить"/>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

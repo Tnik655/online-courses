@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Teacher</title>
+<link rel="stylesheet" th:href="@{/css/teacher/create-course.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css">
+</head>
+<body>
+	<header class="header" th:insert="~{header :: header-fr}"></header>
+	<main class="main">
+		<div class="container">
+			<h1 class="main__title">Создание курса</h1>
+			
+			<form class="create-course-form" action="/teacher/create" method="post">
+				<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+				<label for="course-title">Введите название курса</label>
+				<input name="title" class="input-text" id="course-title" type="text" placeholder="Название">
+				<input class="blue-btn" type="submit" value="Создать">
+			</form>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro
+        http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-30-insert-roles-table-1">
+            <insert tableName="roles">
+                <column name="name" value="ROLE_ADMIN"/>
+            </insert>
+            <insert tableName="roles">
+                <column name="name" value="ROLE_USER"/>
+            </insert>
+            <insert tableName="roles">
+                <column name="name" value="ROLE_TEACHER"/>
+            </insert>
+            
+            <rollback>
+                <delete tableName="roles">
+                    <where>
+                        name in ('ROLE_ADMIN', 'ROLE_USER', 'ROLE_TEACHER')
+                    </where>
+                </delete>
+            </rollback>
+        </changeSet>
+        
+</databaseChangeLog>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css">
+</head>
+<body>
+	<div class="container" th:fragment="header-fr">
+		<div class="header__container">
+			<div>
+				<a href="/courses" class="header__title">Онлайн Курсы</a>
+			</div>
+			<nav class="header__nav">
+				<a sec:authorize="hasRole('ADMIN')" href="/admin/users" class="nav-link">Админ</a>
+				<a sec:authorize="hasRole('TEACHER') or hasRole('ADMIN')"
+					href="/teacher" class="nav-link">Создать курс</a> 
+				<a href="/courses" class="nav-link">Каталог</a> 
+				<a href="#" class="nav-link">Мои курсы</a> 
+				<a href="/profile" class="nav-link">Профиль</a>
+			</nav>
+			<div class="header__auth">
+				<form action="/logout" method="post">
+					<button type="submit" class="logout-btn">LogOut</button>
+					<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

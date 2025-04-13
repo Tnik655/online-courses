@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro
+        http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+        
+        <changeSet author="Bikbulatov Damir" id="2025-04-08-insert-admin-1">
+        	<insert tableName="users">
+        		<column name="username">admin</column>
+        		<column name="password">$2a$10$Dv0fwgo/cEg4muPlhaNAiORuJVg71MYIUC63gxiJ6Wf8zZM9.ywf2</column>
+        		<column name="role_id">1</column>
+        	</insert>
+        </changeSet>
+        <changeSet author="Bikbulatov Damir" id="2025-04-08-insert-admin-2">
+        	<update tableName="users">
+        		<column name="registration_date" valueDate="CURRENT_DATE"/>
+        		<where>username='admin'</where>
+        	</update>
+        </changeSet>
+        
+</databaseChangeLog>

@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+.input-text {
+    box-shadow: 0 0 2px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.blue-btn{
+    background-color: #0083da;
+    color: white;
+    border: white solid 1px;
+    padding: 8px;
+    font-size: 14px;
+    transition: all .4s ease-in;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all .4s ease-in;
+}
+
+.blue-btn:hover{
+    background-color: #0199ff;
+}
+
+
+.red-btn{
+    background-color: #c80000;
+    color: white;
+    border: white solid 1px;
+    padding: 8px;
+    font-size: 14px;
+    transition: all .4s ease-in;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all .4s ease-in;
+}
+
+.red-btn:hover{
+    background-color: #c80222;
+}
+
+
+.main {
+	margin-top: 160px;
+}
+
+.main__title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 400;
+    font-family: inherit;
+    margin: 32px 0;
+}

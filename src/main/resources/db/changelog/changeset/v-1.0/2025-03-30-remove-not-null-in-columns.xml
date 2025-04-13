@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro
+        http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-30-remove-not-null-in-columns-1">
+            <dropColumn tableName="lesson" columnName="created_by_id"/>
+            <dropColumn tableName="lesson" columnName="changed_by_id"/>
+            <dropColumn tableName="lesson" columnName="deleted_by_id"/>
+            <dropColumn tableName="course" columnName="created_by_id"/>
+            <dropColumn tableName="course" columnName="author_id"/>
+            <dropColumn tableName="course" columnName="deleted_by_id"/>
+            <dropColumn tableName="module" columnName="created_by_id"/>
+            <dropColumn tableName="module" columnName="changed_by_id"/>
+            <dropColumn tableName="module" columnName="deleted_by_id"/>
+        </changeSet>
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-30-remove-not-null-in-columns-2">
+            <addColumn tableName="lesson">
+                <column name="created_by_id" type="bigserial" >
+                    <constraints references="users(id)" foreignKeyName="created_by_fk" nullable="false"/>
+                </column>
+                
+                <column name="changed_by_id" type="bigserial">
+                    <constraints references="users(id)" foreignKeyName="changed_by_fk" nullable="false"/>
+                </column>
+                
+                <column name="deleted_by_id" type="bigserial">
+                    <constraints references="users(id)" foreignKeyName="deleted_by_fk" nullable="true"/>
+                </column>
+            </addColumn>
+        </changeSet>
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-30-remove-not-null-in-columns-3">
+            <addColumn tableName="course">
+                <column name="created_by_id" type="bigserial" >
+                    <constraints references="users(id)" foreignKeyName="course_created_by_fk" nullable="false"/>
+                </column>
+                
+                <column name="author_id" type="bigserial">
+                    <constraints references="users(id)" foreignKeyName="course_author_fk" nullable="false"/>
+                </column>
+                
+                <column name="deleted_by_id" type="bigserial">
+                    <constraints references="users(id)" foreignKeyName="course_deleted_by_fk" nullable="true"/>
+                </column>
+            </addColumn>
+        </changeSet>
+        
+        <changeSet author="Bikbulatov Damir" id="2025-03-30-remove-not-null-in-columns-4">
+            <addColumn tableName="module">
+                <column name="created_by_id" type="bigserial" >
+                    <constraints references="users(id)" foreignKeyName="module_created_by_fk" nullable="false"/>
+                </column>
+                
+                <column name="changed_by_id" type="bigserial">
+                    <constraints references="users(id)" foreignKeyName="module_changed_by_fk" nullable="false"/>
+                </column>
+                
+                <column name="deleted_by_id" type="bigserial">
+                    <constraints references="users(id)" foreignKeyName="module_deleted_by_fk" nullable="true"/>
+                </column>
+            </addColumn>
+        </changeSet>
+        
+</databaseChangeLog>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro
+        http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet id="2025-03-21-initial-schema-1" author="Bikbulatov Damir">
+        <createTable tableName="users">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="users_id_pk"/>
+            </column>
+            <column name="username" type="varchar(100)"></column>
+            <column name="password" type="varchar(100)"></column>
+            <column name="email" type="varchar(100)"></column>
+            <column name="first_name" type="varchar(100)"></column>
+            <column name="last_name" type="varchar(100)"></column>
+            <column name="registration_date" type="varchar(100)"></column>
+            <column name="profile_picture" type="varchar(100)"></column>
+        </createTable>
+    </changeSet> 
+    
+    
+    <changeSet id="2025-03-21-initial-schema-2" author="Bikbulatov Damir">
+        <createTable tableName="roles">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="roles_id_pk"/>
+            </column>
+            <column name="name" type="varchar(100)"></column>
+        </createTable>
+    </changeSet> 
+    
+    <changeSet id="2025-03-21-initial-schema-3" author="Bikbulatov Damir">
+        <createTable tableName="rating">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="rating_id_pk"/>
+            </column>
+            <column name="user_id" type="bigserial">
+                <constraints unique="true" references="users(id)" foreignKeyName="rating_users_fk"/>
+            </column>
+            <column name="rating" type="int">
+                <constraints checkConstraint="rating between 1 and 10"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="2025-03-21-initial-schema-4" author="Bikbulatov Damir">
+        <createTable tableName="category">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="category_id_pk"/>
+            </column>
+            <column name="name" type="varchar(100)"></column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="2025-03-21-initial-schema-5" author="Bikbulatov Damir">
+        <createTable tableName="content">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="content_id_pk"/>
+            </column>
+            <column name="reference" type="varchar(255)"></column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="2025-03-21-initial-schema-6" author="Bikbulatov Damir">
+        <createTable tableName="tag">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="tag_id_pk"/>
+            </column>
+            <column name="name" type="varchar(100)"></column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="2025-03-21-initial-schema-7" author="Bikbulatov Damir">
+        <createTable tableName="lesson">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="lesson_id_pk"/>
+            </column>
+            <column name="title" type="varchar(100)"></column>
+            <column name="description" type="varchar(100)"></column>
+            <column name="created_by_id" type="bigserial">
+                <constraints references="users(id)" foreignKeyName="lesson_created_by_fk"/>
+            </column>
+            <column name="created_date" type="date"></column>
+            <column name="changed_by_id" type="bigserial">
+                <constraints references="users(id)" foreignKeyName="lesson_changed_by_fk"/>
+            </column>
+            <column name="changed_date" type="date"></column>
+            <column name="deleted_by_id" type="bigserial">
+                <constraints references="users(id)" foreignKeyName="lesson_deleted_by_fk"/>
+            </column>
+            <column name="deleted_date" type="date"></column>
+            <column name="text" type="text"></column>
+            <column name="content_id" type="bigserial">
+                <constraints references="content(id)" foreignKeyName="lesson_content_fk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="2025-03-21-initial-schema-8" author="Bikbulatov Damir">
+        <createTable tableName="module">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="module_id_pk"/>
+            </column>
+            <column name="title" type="varchar(100)"></column>
+            <column name="description" type="varchar(100)"></column>
+            <column name="created_by_id" type="bigserial">
+                <constraints references="users(id)"  foreignKeyName="module_created_by_fk"/>
+            </column>
+            <column name="created_date" type="date"></column>
+            <column name="changed_by_id" type="bigserial">
+                <constraints references="users(id)" foreignKeyName="module_changed_by_fk"/>/>
+            </column>
+            <column name="changed_date" type="date"></column>
+            <column name="deleted_by_id" type="bigserial">
+                <constraints references="users(id)" foreignKeyName="module_deleted_by_fk"/>
+            </column>
+            <column name="deleted_date" type="date"></column>
+            <column name="lesson_id" type="bigserial">
+                <constraints references="lesson(id)" foreignKeyName="module_lesson_fk"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="2025-03-21-initial-schema-9" author="Bikbulatov Damir">
+        <createTable tableName="course">
+            <column name="id" autoIncrement="true" type="bigserial">
+                <constraints primaryKey="true" primaryKeyName="course_id_pk"/>
+            </column>
+            <column name="title" type="varchar(100)"></column>
+            <column name="author_id" type="bigserial">
+                <constraints references="users(id)" foreignKeyName="course_author_fk"/>
+            </column>
+            <column name="rating_id" type="bigserial">
+                <constraints references="rating(id)" foreignKeyName="course_rating_fk"/>
+            </column>
+            <column name="passing_time" type="varchar(100)"></column>
+            <column name="created_by_id" type="bigserial">
+                <constraints references="users(id)" foreignKeyName="course_created_by_fk"/>
+            </column>
+            <column name="created_date" type="date"></column>
+            <column name="deleted_by_id" type="bigserial">
+                <constraints references="users(id)" foreignKeyName="course_deleted_by_fk"/>
+            </column>
+            <column name="deleted_date" type="date"></column>
+            <column name="module_id" type="bigserial">
+                <constraints references="module(id)" foreignKeyName="course_module_fk"/>
+            </column>
+            <column name="tag_id" type="bigserial">
+                <constraints references="tag(id)" foreignKeyName="course_tag_fk"/>
+            </column>
+            <column name="category_id" type="bigserial">
+                <constraints references="category(id)" foreignKeyName="course_category_fk"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
